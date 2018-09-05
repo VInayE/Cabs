@@ -1,0 +1,3 @@
+git@gitlab.yatra.com:pwa/cabs.git
+
+git clone http://gitlab.yatra.com/pwa/cabs.git

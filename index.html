@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0">
+    <title>Yatra Cabs</title>
+    <script>
+      var _il = ['tablet','ucbrowser','iPad','Windows Phone','Firefox'];
+      (function(){
+        for(var a in _il){
+           var _ua = navigator.userAgent
+           if(_ua.indexOf(_il[a]) !== -1) {
+              window.location.href = 'https://www.yatra.com?redirect=no';
+           };
+        };
+     })();
+    </script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/pwa/cabs/cabs/img/icons/launcher-512.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/pwa/cabs/cabs/img/icons/launcher-512.png">
+    <!--[if IE]><link rel="shortcut icon" href="/static/img/icons/favicon.ico"><![endif]-->
+    <!-- Add to home screen for Android and modern mobile browsers -->
+    <link rel="manifest" href="/pwa/cabs/cabs/manifest.json">
+    <meta name="theme-color" content="#ea2330">
+
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="yatra_cabs">
+    <link rel="apple-touch-icon" href="/pwa/cabs/cabs/img/icons/launcher-512.png">
+    <!-- Add to home screen for Windows -->
+    <meta name="msapplication-TileImage" content="/pwa/cabs/cabs/img/icons/launcher-512.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <% for (var chunk of webpack.chunks) {
+        for (var file of chunk.files) {
+          if (file.match(/\.(js|css)$/)) { %>
+    <link defer rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
+  </head>
+  <body>
+     <script async defer type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script  src="https://www.yatra.com/content/fresco/js/plugins/adobeAnalytics/adobe_analytics.js"></script>
+      <script>
+        if (yt_adobe) {
+         yt_adobe.addHeaderScript();
+        }
+ </script>
+    <noscript>
+      This is your fallback content in case JavaScript fails to load.
+    </noscript>
+    <div id="app"></div>
+    <!-- Todo: only include in production -->
+    <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
+    <!-- built files will be auto injected -->
+    <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4sGAxEo3R5F3nqLZ7qZcFIPVjDPrsgLI&libraries=places,geometry&language=en"></script>
+    <script>
+      if(yt_adobe) {
+        yt_adobe.addFooterScript();  
+      }
+</script>
+    </body>
+</html>
